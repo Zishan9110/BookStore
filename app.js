@@ -6,9 +6,14 @@ require("./connection/conn");  // Your DB connection
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+// Enable CORS for your GitHub Pages frontend
+app.use(cors({
+    origin: "https://zishan9110.github.io", // Allow requests from your GitHub Pages
+    methods: ["GET", "POST", "PUT", "DELETE"], // Specify the methods you want to allow
+    credentials: true // Include credentials if needed
+}));
 
+app.use(express.json());
 
 // Routes
 app.use('/api/v1', bookRoute);
